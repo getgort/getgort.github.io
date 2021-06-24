@@ -8,7 +8,7 @@ This page will tell you how to quickly create a Slack Bot User and get Gort up a
 
 ## Create a Slack Bot User
 
-1. If you haven't done so already, create a new Slack workspace.
+1. If you haven't done so already, [create a new Slack workspace](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
 
 1. Use this link to create a new Slack (Classic) app: [https://api.slack.com/apps?new_classic_app=1](https://api.slack.com/apps?new_classic_app=1). Choose your application name and select the workspace you just created, and click "Create App".
 
