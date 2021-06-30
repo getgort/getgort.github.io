@@ -1,7 +1,5 @@
 # Command Execution Rules
 
-## _This pages describes functionality that is still in development._
-
 ## Rule Structure
 
 Rules help Gort to determine who is able to perform what task. Gort rules follow a specific format. The rule structure describes what command is executed and what permission is needed in order to execute the command. If a user does not have the specified permission, the user is not able to execute the command.
