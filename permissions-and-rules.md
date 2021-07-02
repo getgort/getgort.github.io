@@ -1,7 +1,5 @@
 # Permissions and Rules
 
-## _This pages describes functionality that is still in development._
-
 The Gort chatbot system comes equipped with a comprehensive and flexible authorization system which allows operators fine-grained control over who is able to execute chat commands, extending even to control over particular invocations of chat commands.
 
 In this document, we will discuss the individual pieces of the authorization system and take a look at how it is used in practice.

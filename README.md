@@ -1,6 +1,6 @@
 # The Gort Guide
 
-***This project is a work in progress under active heavy development. It is not production (or even alpha) ready! Follow [the Gort project](https://github.com/getgort/gort) for updates!***
+***Gort is a work in progress under active heavy development. It is not production (or even alpha) ready! Follow [the Gort project](https://github.com/getgort/gort) for updates!***
 
 Gort is a chatbot framework designed from the ground up for chatops.
 
@@ -20,10 +20,31 @@ The primary goal of this project is to re-implement the core features of Cog tha
 ## User Documentation
 
 1. [Quick Start](quickstart.md)
-2. [Architecture](architecture.md)
-3. [Getting Started](getting-started.md)
-3. [Bootstrapping Gort](bootstrapping.md)
-4. [Command Bundles](bundles.md)
-5. [Permissions and Rules](rules.md)
-6. [Command Execution Rules](execution-rules.md)
-7. [Users and Groups](users+groups.md)
+1. [Architecture](architecture.md)
+1. [Getting Started](getting-started.md)
+1. [Bootstrapping Gort](bootstrapping.md)
+1. [Server Configuration](server-configuration.md)
+1. [Commands and Bundles](commands-and-bundles.md)
+1. [Managing Bundles](managing-bundles.md)
+1. [Bundle Configs](bundle-configs.md)
+1. [Writing a Command Bundle](writing-a-command-bundle.md)
+1. [Installing Your First Command Bundle](installing-Your-first-command-bundle.md)
+1. [Permissions and Rules](permissions-and-rules.md)
+1. [Command Execution Rules](command-execution-rules.md)
+1. [Command Environment Variables](command-environment-variables.md)
+1. [Returning Data](returning-data.md)
+1. [User Management](user-management.md)
+1. [Audit Log Events](audit-log-events.md)
+1. [Designing ChatOps Commands](designing-chatops-commands.md)
+1. [Going Forward: Features to Look Forward To](going-forward.md)
+
+<!-- 
+TO ADD WHEN READY:
+1. [Templates](templates.md)
+1. [Dynamic Command Configuration](dynamic-command-configuration.md)
+1. [Configuring Password Resets](configuring-password-resets.md)
+1. [Installing And Managing Relays](installing-and-managing-relays.md)
+1. [Relay Configuration](relay-configuration.md)
+1. [Command Output Tags](command-output-tags.md)
+1. [Services](services.md)
+-->

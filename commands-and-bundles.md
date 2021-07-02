@@ -1,4 +1,4 @@
-# Command Bundles
+# Commands and Bundles
 
 A command bundle is a set of related commands that, when installed in Gort, may be executed by users from any connected (and allowed) chat service. It specifies which binary to execute, who may execute the commands (i.e., which users with which permissions), and which relay should execute it.
 
