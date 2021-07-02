@@ -28,7 +28,7 @@ The primary goal of this project is to re-implement the core features of Cog tha
 1. [Managing Bundles](managing-bundles.md)
 1. [Bundle Configs](bundle-configs.md)
 1. [Writing a Command Bundle](writing-a-command-bundle.md)
-1. [Installing Your First Command Bundle](installing-Your-first-command-bundle.md)
+1. [Installing Your First Command Bundle](installing-your-first-command-bundle.md)
 1. [Permissions and Rules](permissions-and-rules.md)
 1. [Command Execution Rules](command-execution-rules.md)
 1. [Command Environment Variables](command-environment-variables.md)
