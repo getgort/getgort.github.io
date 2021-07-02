@@ -1,6 +1,6 @@
 # Getting Started
 
-This guide will instruct you through the process of installing the Gort Controller.
+This guide will instruct you through the process of installing the Gort controller.
 
 The Gort controller is the core Gort service, which relays messages to and from the chat providers, manages relay command instructions, and exposes the REST administration API.
 
@@ -15,7 +15,7 @@ To install Gort, you'll need the following:
 
 ## Installing Gort
 
-Like most software, before you run the Gort Controller, you have to install it. You have three options for exactly how you want to do that.
+Like most software, before you run the Gort controller, you have to install it. You have three options for exactly how you want to do that.
 
 ### Installing Gort via `go install`
 
@@ -116,7 +116,7 @@ gort_1      | INFO   [0001] Connecting to Slack provider                  adapte
 gort_1      | INFO   [0001] Connection established to provider            adapter.name=Gort adapter.type=slack event=connected
 ```
 
-Congratulations, you now have a running Gort Controller!
+Congratulations, you now have a running Gort controller!
 
 ## Bootstrapping Gort
 
