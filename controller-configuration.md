@@ -13,7 +13,6 @@ The configuration YAML format is defined by the scheme described below. Brackets
 Generic placeholders are defined as follows:
 
 - `<boolean>`: a boolean that can take the values `true` or `false`.
-- `<duration>`: a duration matching the regular expression `((([0-9]+)y)?(([0-9]+)w)?(([0-9]+)d)?(([0-9]+)h)?(([0-9]+)m)?(([0-9]+)s)?(([0-9]+)ms)?|0)`, e.g. 1d, 1h30m, 5m, 10s
 - `<filename>`: a valid path in the current working directory
 - `<host>`: a valid string consisting of a hostname or IP followed by an optional port number
 - `<int>`: an integer value
@@ -66,29 +65,25 @@ bundles:
 
 ## &lt;gort&gt;
 
-More coming soon.
-
 ```yaml
 # Gort will automatically create accounts for new users when set.
 # User accounts created this way will still need to be placed into groups
 # by an administrator in order to be granted any permissions.
 [ allow_self_registration: <boolean> | default = false ]
 
-# The address to listen on for Gort's REST API. Defaults to ":4000".
+# The address to listen on for Gort's REST API.
 [ api_address: <host> | default = ":4000" ]
 
 # Controls the prefix of URLs generated for the core API. URLs may contain a
 # scheme (either http or https), a host, an optional port (defaulting to 80
 # for http and 443 for https), and an optional path.
-# Defaults to localhost
 [ api_url_base: <host> | default = "localhost" ]
 
 # Enables development mode. Currently this only affects log output format.
-# Defaults to false
 [ development_mode: <boolean> | default = false ]
 
 # If true, allows Gort to respond to commands prefixed with ! instead of only
-# via direct mentions. Defaults to true.
+# via direct mentions.
 [ enable_spoken_commands: <boolean> | default = true ]
 
 # If set along with tls_key_file, TLS will be used for API connections.
@@ -101,4 +96,47 @@ More coming soon.
 [ tls_key_file: <filename> ]
 ```
 
-(More coming soon)
+## &lt;database&gt;
+
+```yaml
+# The host where Gort's PostgreSQL database lives.
+[ host: <host> | default = "localhost" ]
+
+# The port at which Gort may access its PostgreSQL database.
+[ port: <int> | default = 5432 ]
+
+# The user to connect to Gort's PostgreSQL database.
+[ user: <string> ]
+
+# The password for connecting to Gort's PostgreSQL database. Alternatively,
+# this value can (and should) be specified via the GORT_DB_PASSWORD envvar.
+[ password: <string> ]
+
+# Set this to true to have Gort connect to its database using SSL.
+[ ssl_enabled: <boolean> | default = false ]
+
+# Database connection pool size.
+[ pool_size: <int> | default = 10 ]
+
+# Number of milliseconds to wait to checkout a database connection from the pool.
+[ pool_timeout: <int> | default = 15000 ]
+
+# Amount of time to wait for execution of a database query to complete.
+[ query_timeout: <int> | default = 15000 ]
+```
+
+## &lt;docker&gt;
+
+WIP
+
+## &lt;jaeger&gt;
+
+WIP
+
+## &lt;slack&gt;
+
+WIP
+
+## &lt;bundles&gt;
+
+WIP
