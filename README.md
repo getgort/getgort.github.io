@@ -20,10 +20,10 @@ The primary goal of this project is to re-implement the core features of Cog tha
 ## User Documentation
 
 1. [Quick Start](quickstart.md)
-1. [Architecture](architecture.md)
+1. [Gort Architecture](architecture.md)
 1. [Getting Started](getting-started.md)
+1. [Controller Configuration](controller-configuration.md)
 1. [Bootstrapping Gort](bootstrapping.md)
-1. [Server Configuration](server-configuration.md)
 1. [Commands and Bundles](commands-and-bundles.md)
 1. [Managing Bundles](managing-bundles.md)
 1. [Bundle Configs](bundle-configs.md)
