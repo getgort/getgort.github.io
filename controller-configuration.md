@@ -13,17 +13,14 @@ The configuration YAML format is defined by the scheme described below. Brackets
 Generic placeholders are defined as follows:
 
 - `<boolean>`: a boolean that can take the values `true` or `false`.
-- `<filename>`: a valid path in the current working directory
-- `<host>`: a valid string consisting of a hostname or IP followed by an optional port number
-- `<int>`: an integer value
-- `<labelname>`: a string matching the regular expression `[a-zA-Z_][a-zA-Z0-9_]*`
-- `<labelvalue>`: a string of unicode characters
-- `<path>`: a valid URL path
-- `<scheme>`: a string that can take the values `http` or `https`.
-- `<secret>`: a regular string that is a secret, such as a password
-- `<string>`: a regular string
-- `<size>`: a size in bytes, e.g. `512MB`. A unit is required. Supported units: B, KB, MB, GB, TB, PB, EB.
-- `<tmpl_string>`: a string which is template-expanded before usage
+- `<duration>`: a duration string: a sequence of decimal numbers, each with optional fraction and a unit suffix: `1d`, `1h30m`, `5m`, `10s`. Valid units are "ms", "s", "m", "h".
+- `<filename>`: a valid path in the current working directory.
+- `<host>`: a valid string consisting of a hostname or IP (possibly followed by an optional port number).
+- `<int>`: an integer value.
+- `<path>`: a valid URL path.
+- `<port>`: a valid port number ranging from 0 to 65535.
+- `<secret>`: a regular string that is a secret, such as a password.
+- `<string>`: a regular string.
 
 The other placeholders are specified separately.
 
@@ -33,34 +30,34 @@ The global configuration specifies parameters that are valid in all other config
 
 ```yaml
 global:
-    # How long before a command times out, in seconds. 0 means no timeout.
-    [ command_timeout_seconds: <int> | default = 60 ]
+  # How long before a command times out, in seconds. 0 means no timeout.
+  [ command_timeout: <int> | default = 60 ]
 
 # Gort controller behavior.
 gort:
-    [ - <gort> ... ]
+  [ - <gort> ... ]
 
 # Configures Gort's PostgreSQL database.
 database:
-    [ - <database> ... ]
+  [ - <database> ... ]
 
 # Configures Gort's Docker host data.
 docker:
-    [ - <docker> ... ]
+  [ - <docker> ... ]
 
 # Configures the Jaeger host, to which Gort sends internal trace telemetry.
 jaeger:
-    [ - <jaeger> ... ]
+  [ - <jaeger> ... ]
 
 # A list of zero or more configurations that describe Slack workspaces that
 # Gort can relay to and from.
 slack:
-    [ - <slack> ... ]
+  [ - <slack> ... ]
 
 # Zero or more default command bundles, which are installed at startup and may
 # not be removed by the API.
 bundles:
-    [ - <bundles> ... ]
+  [ - <bundles> ... ]
 ```
 
 ## &lt;gort&gt;
@@ -82,7 +79,7 @@ bundles:
 # Enables development mode. Currently this only affects log output format.
 [ development_mode: <boolean> | default = false ]
 
-# If true, allows Gort to respond to commands prefixed with ! instead of only
+# If true, Gort can respond to commands prefixed with !, instead of only
 # via direct mentions.
 [ enable_spoken_commands: <boolean> | default = true ]
 
@@ -103,40 +100,97 @@ bundles:
 [ host: <host> | default = "localhost" ]
 
 # The port at which Gort may access its PostgreSQL database.
-[ port: <int> | default = 5432 ]
+[ port: <port> | default = 5432 ]
 
 # The user to connect to Gort's PostgreSQL database.
 [ user: <string> ]
 
 # The password for connecting to Gort's PostgreSQL database. Alternatively,
-# this value can (and should) be specified via the GORT_DB_PASSWORD envvar.
-[ password: <string> ]
+# this value can (and should) be specified via the GORT_DB_PASSWORD env var.
+[ password: <secret> ]
 
 # Set this to true to have Gort connect to its database using SSL.
 [ ssl_enabled: <boolean> | default = false ]
 
-# Database connection pool size.
-[ pool_size: <int> | default = 10 ]
+# The maximum amount of time a connection may be idle. Expired connections
+# may be closed lazily before reuse. If <= 0, connections are not closed due
+# to a connection's idle time.
+[ connection_max_idle_time: <duration> | default = 1m ]
 
-# Number of milliseconds to wait to checkout a database connection from the pool.
-[ pool_timeout: <int> | default = 15000 ]
+# The maximum amount of time a connection may be reused. Expired connections
+# may be closed lazily before reuse. If <= 0, connections are not closed due
+# to a connection's age.
+[ connection_max_life_time: <duration> | default = 10m ]
 
-# Amount of time to wait for execution of a database query to complete.
-[ query_timeout: <int> | default = 15000 ]
+# Sets the maximum number of connections in the idle connection pool. If
+# max_open_connections is > 0 but < max_idle_connections, then this value
+# will be reduced to match max_open_connections.
+# If n <= 0, no idle connections are retained.
+[ max_idle_connections: <int> | default = 2 ]
+
+# The maximum number of open connections to the database. If
+# max_idle_connections is > 0 and the new this is less than
+# max_idle_connections, then max_idle_connections will be reduced to match
+# this value. If n <= 0, then there is no limit on the number of open
+# connections.
+[ max_open_connections: <int> ]
+
+# How long to wait for execution of a database query to complete.
+query_timeout: <duration> | default = 15s ]
 ```
 
 ## &lt;docker&gt;
 
-WIP
+This section is used to configures Gort's Docker host data. At the moment it only includes one value (which itself is likely to move into a relay configuration, when that becomes a thing).
+
+```yaml
+# Defines the location of the Docker port. Required.
+host: <path>
+```
 
 ## &lt;jaeger&gt;
 
-WIP
+This section is used to configures the Jaeger host to which Gort sends internal trace telemetry.
+
+```yaml
+# The URL for the Jaeger collector that spans are sent to. If not set then
+# no exporter will be created.
+[ endpoint: <path> | default = http://localhost:14268/api/traces ]
+
+# The username to be used in the authorization header sent for all requests
+# to the collector. If not set no username will be passed.
+[ username: <string> | default = gort ]
+
+# The password to be used in the authorization header sent for all requests
+# to the collector.
+[ password: <secret> ]
+```
 
 ## &lt;slack&gt;
 
-WIP
+This section is used to describe a Slack workspaces that Gort can receive commands from relay and relay responses to.
+
+Note that `slack` allows multiple elements, which means that it's possible to configure Gort to interact with multiple Slack workspaces.
+
+```yaml
+# An arbitrary name for human labelling purposes.
+name: <string>
+
+# Bot User OAuth Access Token (https://api.slack.com/docs/token-types#bot)
+# used to connect to Slack. You want the one that starts with "xoxb".
+api_token: <string>
+
+# The chat icon for the bot. If not defined, it uses the default for the
+# configured bot.
+[ icon_url: <path> ]
+
+# The name of the bot, as it appears in Slack. Defaults to the name used
+# when the bot was added to the account.
+[ bot_name: <string> ]
+```
 
 ## &lt;bundles&gt;
 
-WIP
+This section is used to define "default bundles", which don't need to be installed or enabled, and cannot be uninstalled.
+
+See the section "Default Bundles" in [Commands and Bundles](commands-and-bundles.md).

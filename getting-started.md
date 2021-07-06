@@ -107,13 +107,13 @@ docker compose up
 Finally, you should see some output similar to the following:
 
 ```
-gort_1      | INFO   [0000] Loaded configuration file                     file=config.yml
-gort_1      | INFO   [0000] Starting Gort                                 version=0.8.0-alpha.0
-gort_1      | INFO   [0000] Installing adapter                            adapter.name=Gort
-gort_1      | INFO   [0001] Connection to data source established         type=postgres.PostgresDataAccess
-gort_1      | INFO   [0001] Gort controller is starting                   address=":4000"
-gort_1      | INFO   [0001] Connecting to Slack provider                  adapter=Gort provider=Gort
-gort_1      | INFO   [0001] Connection established to provider            adapter.name=Gort adapter.type=slack event=connected
+INFO  [0000] Loaded configuration file               file=config.yml
+INFO  [0000] Starting Gort                           version=0.8.0-alpha.0
+INFO  [0000] Installing adapter                      adapter.name=Gort
+INFO  [0001] Connection to data source established   type=postgres.PostgresDataAccess
+INFO  [0001] Gort controller is starting             address=":4000"
+INFO  [0001] Connecting to Slack provider            adapter=Gort provider=Gort
+INFO  [0001] Connection established to provider      adapter.name=Gort adapter.type=slack event=connected
 ```
 
 Congratulations, you now have a running Gort controller!
