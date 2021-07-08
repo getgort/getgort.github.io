@@ -10,7 +10,7 @@ A minimal bundle configuration looks like the following:
 
 ```yaml
 ---
-gort_bundle_version: 4
+gort_bundle_version: 1
 
 name: my_bundle
 description: "Does bundle things"
