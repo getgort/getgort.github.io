@@ -65,7 +65,7 @@ Gort ChatOps Engine v0.8.0-alpha.0
 
 ## Configuring Gort
 
-See [Server Configuration](server-configuration.md).
+See [Controller Configuration](controller-configuration.md).
 
 ## Running Gort
 

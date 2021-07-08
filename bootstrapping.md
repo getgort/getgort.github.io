@@ -9,11 +9,11 @@ $ gort bootstrap --allow-insecure localhost:4000
 User "admin" created and credentials appended to gort config.
 ```
 
-Note the existence of the `--allow-insecure` flag. This allows you to communicate with the Gort relay across an unencrypted channel, which is commonly the case when you're testing locally. _**This should never, ever be used in production.**_
+Note the existence of the `--allow-insecure` flag. This allows you to communicate with the Gort API across an unencrypted connection, which is commonly the case when you're testing locally. _**This state should never, ever be used in production.**_
 
 The `gort bootstrap` command is idempotent: subsequent calls will return an error message, but the Gort system itself will remain unaffected.
 
-If you take a look in `~/.gort/profile`, you'll begin to see what has happened.
+If you take a look in `~/.gort/profile`, you'll begin to see what just happened.
 
 ```
 $ cat ~/.gort/profile 

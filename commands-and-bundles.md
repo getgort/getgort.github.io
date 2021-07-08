@@ -1,125 +1,118 @@
 # Commands and Bundles
 
-A command bundle is a set of related commands that, when installed in Gort, may be executed by users from any connected (and allowed) chat service. It specifies which binary to execute, who may execute the commands (i.e., which users with which permissions), and which relay should execute it.
+As a chatops bot, commands are central to Gort. Let's take a look at exactly what commands are, how they're organized, and how they're managed.
 
-*Currently, Gort only supports commands that have been built into a Docker image, but a future iteration will support the execution of commands natively on a relay's host.*
-
-## Installing Command Bundles
-
-Command bundles can installed "by default" by including them in the Gort configuration, or explicitly installed by an administrator.
-
-The YAML used for each of these cases is nearly identical, and includes the following sections:
-
-* **The name and description.** This name is how the bundle will be referenced both via user commands and internally, so it has to be unique to an installation. Attempting to install a command bundle with the same name will result in an error.
-
-* **Docker image.** The Docker image that contains all of the bundle's commands. One image per bundle.
-
-* **Permissions.** A list of the permissions (arbitrary strings, at this point) utilized by this bundle.
-
-* **A list of commands.** Zero or more commands that can be invoked in the bundle and their associated executables. The command name, as defined here, will be the command invoked by users; it doesn't have to match the name of the binary.
-
-### Default Bundles
-
-Default bundles are automatically installed by including them in the `bundles` section of the Gort configuration, as follows:
-
-```yaml
-bundles:
-- name: echo
-  author: Matt Titmus <matthew.titmus@gmail.com>
-  homepage: https://getgort.github.io/gort-guide/
-  description: A test bundle.
-  long_description: |-
-    This is test bundle.
-    There are many like it, but this one is mine.
-
-  docker:
-    image: clockworksoul/relaytest
-    tag: latest
-
-  permissions:
-    - echo
-
-  commands:
-    echo:
-      description: "Echos back anything sent to it, all at once."
-      executable: "/bin/echo"
-      rules:
-        - must have test:echo
-```
-
-As the name "default" suggests, bundles installed this way don't have to be explicitly installed by an administrator. Default bundles are also automatically enabled.
-
-### Explicitly Installed Bundles
-
-Command bundles can be explicitly installed using `gort bundle`. Bundles can only be installed this way by an adequately-privileged user (generally an administrator), and are disabled by default.
-
-#### Bundle manifests
-
-In order to install a bundle, it must first be defined in a YAML document called a "bundle manifest".
-
-A complete definition will resemble the following fully-functioning example.
-
-```yaml
----
-gort_bundle_version: 1
-
-name: echo
-version: 0.0.1
-author: Matt Titmus <matthew.titmus@gmail.com>
-homepage: https://getgort.github.io/gort-guide/
-description: A test bundle.
-long_description: |-
-  This is test bundle.
-  There are many like it, but this one is mine.
-
-permissions:
-  - echo
-
-docker:
-  image: ubuntu
-  tag: 20.04
-
-commands:
-  echo:
-    description: "Echos back anything sent to it, all at once."
-    executable: "/bin/echo"
-    rules:
-      - must have test:echo
-```
-
-As you can see, the construction of this manifest is nearly identical to that of the `bundles` section of the configuration used to define default bundles, except:
-
-- It isn't embedded in a `bundles` block,
-- It has a `gort_bundle_version` attribute, which must be set to `1`, and
-- It has a `version` attribute.
-
-The bundle's `version` is important. Multiple versions of a bundle can be installed, but only one may be enabled at any given time. When modifying a bundle, the preferred practice is to increment the version number, install the manifest with the new version, and enable the new bundle.
-
-#### Installing a bundle manifest
-
-To install a bundle you use the `gort bundle install` command, referencing the manifest file as follows:
+Let's start with an example. Entering the following into Slack:
 
 ```
-$ gort bundle install echo.yml    
-Bundle "echo" installed.
+!gort:help
 ```
 
-## Command Permissions
-
-Not yet implemented.
-
-## Enabling and Disabling Bundles
-
-To install a bundle you use the `gort bundle enable` command, referencing the bundle name ans version as follows:
+You should receive a response that looks something like this:
 
 ```
-$ gort bundle enable echo 0.0.1 
-Bundle "echo" version 0.0.1 enabled.
+I know about these commands:
+
+curl:curl
+gort:bundle
+gort:group
+gort:help
+gort:role
+gort:user
+gort:version
 ```
 
-A bundle can also be disabled using the `gort bundle disable` command:
+Typing `!gort:help` executed the `help` command from the `gort` command bundle. From the response, you can see that the system currently has two bundles installed (`curl`, and `gort`), each of which contains one or more commands. The `curl` bundle contains a single command (also named `curl`), and the `gort` bundle contains several commands, one of which is the `help` command we just invoked.
+
+Try calling `gort:help COMMAND` to find out more about a specific command:
 
 ```
-$ gort bundle disable echo 0.0.1 
-Bundle "echo" version 0.0.1 disabled.
+!gort:help gort:user
 ```
+
+This should provide a response like the following:
+
+```
+Part of the "gort" bundle.
+
+Allows you to perform user administration.
+
+Use "!gort:user --help" for more information about this command.
+```
+
+As indicated in the above output, many commands also support a dedicated `--help` argument (which is handled by the command executable, not by Gort). For example, typing `!gort:help --help` will return the following:
+
+```
+Provides information about a command.
+
+If no command is specified, this will list all commands installed in Gort.
+
+Usage:
+  !gort:help [flags] [command]
+
+Flags:
+  -h, --help   Show this message and exit
+```
+
+## Commands
+
+If you think of Gort as a "shared command line", then commands are like the executables in your terminal.
+
+A given command may need some additional information that would not be shared on the "shared command line", but will have to be setup by an administrator, such as an OAuth key. See [Dynamic Command Configuration](dynamic-command-configuration.md) for more information on how to get this data for command execution.
+
+## Bundles
+
+Bundles (or "command bundles") are the packaging unit for collections of one or more commands. 
+
+Each references a single [Docker container image](https://www.docker.com/resources/what-container) that contains all the binaries and other dependencies. They also include some metadata about the commands, including a small amount of documentation and other metadata. See [Writing A Command Bundle](writing-a-command-bundle.md) for more specifics.
+
+Bundles can be installed into Gort by an administrator (or any user with the `manage_commands` permission) using the `gort` command-line utility. See [Managing Bundles](managing-bundles.md) for more on bundle installation.
+
+### Bundle Permissions and Rules
+
+Bundles also contain a set of permissions and authorization rules for their commands. When a bundle is installed, these permissions and accompanying rules are automatically created in the Gort system.
+
+Since permissions are namespaced to the bundle they originate from, installing a bundle's permissions will never conflict with any existing authorization system configurations you may have made. No users are automatically assigned any of these permissions.
+
+### Example: The `gort` Bundle
+
+The gort bundle is a unique bundle in that it is effectively built into the bot. All Gort instances will have this bundle installed automatically, which is how the core permissions and authorization rules of the system come to be installed.
+
+## Invoking Commands
+
+To invoke a command, like `gort:help`, you actually have a few options.
+
+First, you can use a "command prefix", which defaults to `!`.
+
+```
+!gort:help
+```
+
+You can also interact with the bot in 1-on-1 chat, in which case you may type commands directly; everything you type to the bot is considered a command.
+
+```
+gort:help
+```
+
+<!-- 
+First, you can address the bot directly by name in a channel in which the bot is listening. Here, my bot is named Marvin:
+
+```
+@marvin gort:help
+``` -->
+
+### Shortcuts
+
+Fully-qualifying all command names with their bundle name (i.e., `gort:help`) can get tedious for frequently-used commands.
+
+Fortunately, Gort allows a shortcut: if a command name happens to be unique within a Gort installation (that is, no other bundles are installed that have a command with the same name), you may type the bare command. For example, `gort:help` can be replaced with just `help`, so long as no other bundles have a `help` command.
+
+## Implementation Details
+
+Every bundle has a Docker image that contains all of its commands.
+
+By default, the command uses the image's [default entrypoint](https://docs.docker.com/engine/reference/builder/#entrypoint) to handle commands. However, if a command has an `executable` defined, then the given binary is used instead (like a [Docker `--entrypoint` parameter](https://docs.docker.com/engine/reference/run/#entrypoint-default-command-to-execute-at-runtime)). 
+
+Any parameters you type into the command line are passed directly to the containerized binary, which can handle them just like a normal command-line execution. This allows you to implement your command using a CLI framework in any language you like.
+
+See [Writing A Command Bundle](writing-a-command-bundle.md) for more details.

@@ -62,6 +62,9 @@ bundles:
 
 ## &lt;gort&gt;
 
+This section contains the settings for the behavior of the Gort controller.
+
+
 ```yaml
 # Gort will automatically create accounts for new users when set.
 # User accounts created this way will still need to be placed into groups
@@ -94,6 +97,10 @@ bundles:
 ```
 
 ## &lt;database&gt;
+
+The `database` section is used to configure access to Gort's PostgreSQL database.
+
+If this section is absent, the Gort controller will use an "in memory" data model. This is intended for trialing or development and absolutely, positively should not be used in production.
 
 ```yaml
 # The host where Gort's PostgreSQL database lives.
@@ -136,16 +143,21 @@ bundles:
 [ max_open_connections: <int> ]
 
 # How long to wait for execution of a database query to complete.
-query_timeout: <duration> | default = 15s ]
+[ query_timeout: <duration> | default = 15s ]
 ```
 
 ## &lt;docker&gt;
 
-This section is used to configures Gort's Docker host data. At the moment it only includes one value (which itself is likely to move into a relay configuration, when that becomes a thing).
+This section is used to configure Gort's Docker host data. At the moment it only includes two values (which are likely to move into a relay configuration, when that becomes a thing).
 
 ```yaml
 # Defines the location of the Docker port. Required.
 host: <path>
+
+# The name of a Docker network. If set, any worker containers will be
+# attached to this network. This can be used to allow workers to communicate
+# with a containerized Gort controller.
+[ network: <string> ]
 ```
 
 ## &lt;jaeger&gt;
