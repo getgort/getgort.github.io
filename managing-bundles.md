@@ -57,7 +57,7 @@ A minimal bundle config might look something like this:
 
 ```
 ---
-gort_bundle_version: 4
+gort_bundle_version: 1
 
 name: my_bundle
 version: 0.0.1
