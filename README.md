@@ -27,19 +27,19 @@ The primary goal of this project is to re-implement the core features of Cog tha
 1. [Commands and Bundles](commands-and-bundles.md)
 1. [Managing Bundles](managing-bundles.md)
 1. [Bundle Configurations](bundle-configurations.md)
-1. [Writing a Command Bundle](writing-a-command-bundle.md)
-1. [Installing Your First Command Bundle](installing-your-first-command-bundle.md)
 1. [Permissions and Rules](permissions-and-rules.md)
 1. [Command Execution Rules](command-execution-rules.md)
 1. [Command Environment Variables](command-environment-variables.md)
 1. [Returning Data](returning-data.md)
 1. [User Management](user-management.md)
 1. [Audit Log Events](audit-log-events.md)
-1. [Designing ChatOps Commands](designing-chatops-commands.md)
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 
 <!-- 
-TO ADD WHEN READY:
+COLD STORAGE:
+1. [Designing ChatOps Commands](designing-chatops-commands.md)
+1. [Installing Your First Command Bundle](installing-your-first-command-bundle.md)
+1. [Writing a Command Bundle](writing-a-command-bundle.md)
 1. [Templates](templates.md)
 1. [Dynamic Command Configuration](dynamic-command-configuration.md)
 1. [Configuring Password Resets](configuring-password-resets.md)

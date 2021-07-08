@@ -1,3 +1,0 @@
-# Designing ChatOps Commands
-
-TBD
