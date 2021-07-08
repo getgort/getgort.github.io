@@ -137,7 +137,7 @@ An example excerpt `bundles` section of a controller configuration is shown belo
 bundles:
 - name: echo
   author: Matt Titmus <matthew.titmus@gmail.com>
-  homepage: https://getgort.github.io/gort-guide/
+  homepage: https://guide.getgort.io
   description: A test bundle.
   long_description: |-
     This is test bundle.
@@ -177,7 +177,7 @@ gort_bundle_version: 1
 name: gort
 version: 0.0.1
 author: Matt Titmus <matthew.titmus@gmail.com>
-homepage: https://getgort.github.io/gort-guide/
+homepage: https://guide.getgort.io
 description: The default command bundle.
 long_description: |-
   The default command bundle, which contains the administrative commands and
