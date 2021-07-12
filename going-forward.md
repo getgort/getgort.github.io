@@ -6,5 +6,6 @@ The following is a list of major features that are expected prior to version 1.0
 1. **Command relays.** Will allow commands to be executed anywhere where a relay process is running.
 1. **Templates.** Will allow custom output formatting to make things pretty.
 1. **Support for other chat platforms.** Which ones though?
+1. **Support for contemporary Slack bot accounts.** The Slack interaction code was written back before legacy bots were legacy. We'll fix that.
 
 Have any other ideas? [We want to hear them!](https://github.com/getgort/gort/issues)
