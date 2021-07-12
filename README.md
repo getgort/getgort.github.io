@@ -4,18 +4,19 @@
 
 Gort is a chatbot framework designed from the ground up for chatops.
 
-Gort brings the power of the command line to the place you collaborate with your team all the time -- your chat window. Its open-ended command bundle support allows developers to implement functionality in the language of their choice, while powerful access control means you can collaborate around even the most sensitive tasks with confidence. A focus on extensibility and adaptability means that you can respond quickly to the unexpected, without your team losing visibility.
+Gort brings the power of the command line to the place you collaborate with your team: your chat window. Its open-ended command bundle support allows developers to implement functionality in the language of their choice, while powerful access control means you can collaborate around even the most sensitive tasks with confidence. A focus on extensibility and adaptability means that you can respond quickly to the unexpected, without your team losing visibility.
 
 ## Features
 
-The primary goal of this project is to re-implement the core features of Cog that made it stand out among other chatops tools. Specifically, to:
+Gort's design philosophy emphasizes flexibility and security by allowing you to:
 
-* define arbitrary command functionality in any programming language,
-* package those commands into bundles that can be installed in Gort,
-* allow users to trigger commands through Slack or another chat provider and be presented with the output,
-* execute triggered commands anywhere a relay is installed using a tag-based targeting system,
-* regulate the use of commands with a built-in authentication/authorization system,
-* and record activity in an audit log.
+- Define arbitrary command functionality in any programming language,
+- Package those commands into bundles that can be installed in Gort,
+- Allow users to trigger commands through Slack or another chat provider and be presented with the output,
+- Decide who can use commands (or flags, or parameters) with a built-in RBAC system, and
+- Record all activity in an audit log.
+
+Gort lets you build commands in any language you want, using tooling you're already comfortable with, and can tightly control who can use them and how.
 
 ## User Documentation
 
