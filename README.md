@@ -28,6 +28,7 @@ Gort lets you build commands in any language you want, using tooling you're alre
 1. [Commands and Bundles](commands-and-bundles.md)
 1. [Managing Bundles](managing-bundles.md)
 1. [Bundle Configurations](bundle-configurations.md)
+1. [Writing a Command Bundle](writing-a-command-bundle.md)
 1. [Permissions and Rules](permissions-and-rules.md)
 1. [Command Execution Rules](command-execution-rules.md)
 1. [Command Environment Variables](command-environment-variables.md)
