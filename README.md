@@ -10,11 +10,12 @@ Gort brings the power of the command line to the place you collaborate with your
 
 Gort's design philosophy emphasizes flexibility and security by allowing you to:
 
-- Define arbitrary command functionality in any programming language,
-- Package those commands into bundles that can be installed in Gort,
-- Allow users to trigger commands through Slack or another chat provider and be presented with the output,
-- Decide who can use commands (or flags, or parameters) with a built-in RBAC system, and
-- Record all activity in an audit log.
+- Trigger commands through Slack (or another chat provider)
+- Implement commands in any programming language of your choice
+- Packaged commands into bundles that can be installed in Gort
+- Organize users into groups, and permissions into roles
+- Use a sophisticated identity and permission system to determine who can use commands
+- Record all activity in an audit log
 
 Gort lets you build commands in any language you want, using tooling you're already comfortable with, and can tightly control who can use them and how.
 
