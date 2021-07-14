@@ -66,7 +66,7 @@ Before you can use Gort, you have to bootstrap it by creating the `admin` user.
 You can do this using the `gort bootstrap` command and passing it the email address that your Slack provider knows you by, and the URL of the Gort controller API (by default this will be `localhost:4000`):
 
 ```bash
-$ gort bootstrap --email your.name@email.com localhost:4000
+$ gort bootstrap --email your.name@email.com localhost:4000 --allow-insecure
 User "admin" created and credentials appended to gort config.
 ```
 
