@@ -1,1 +1,6 @@
-.vscode
+# Mac .DS_Store metadata files
+.DS_Store
+
+# VisualStudioCode
+.vscode/*
+
