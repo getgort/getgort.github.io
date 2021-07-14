@@ -38,9 +38,9 @@ You can verify that this was successful by using the `docker images` command,
 
 ```bash
 $ docker images
-REPOSITORY       TAG            IMAGE ID        CREATED             SIZE
-getgort/gort     0.6.0-dev.3    dea1c24f73f3    43 seconds ago      107MB
-getgort/gort     latest         dea1c24f73f3    43 seconds ago      107MB
+REPOSITORY     TAG            IMAGE ID       CREATED         SIZE
+getgort/gort   0.8.0-beta.0   66fca0b90847   5 seconds ago   109MB
+getgort/gort   latest         66fca0b90847   5 seconds ago   109MB
 ```
 
 This should indicate the presence of two images (actually, one image tagged twice) named `getgort/gort`.
@@ -66,7 +66,7 @@ Before you can use Gort, you have to bootstrap it by creating the `admin` user.
 You can do this using the `gort bootstrap` command and passing it the email address that your Slack provider knows you by, and the URL of the Gort controller API (by default this will be `localhost:4000`):
 
 ```bash
-$ gort bootstrap --email your.name@email.com localhost:4000 --allow-insecure
+$ gort bootstrap --email your.name@email.com --allow-insecure localhost:4000
 User "admin" created and credentials appended to gort config.
 ```
 
