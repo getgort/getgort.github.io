@@ -112,59 +112,9 @@ The following documentation field can also be used in each command configuration
 
 ## Bundle Installation
 
-Command bundles can installed in one of two ways: 
-
-1. Explicitly installed by an administrator using the `gort bundle install` subcommand, or
-1. "By default" by describing them in the Gort controller configuration, or
-
-The YAML used for each of these cases is nearly identical.
-
-### Explicitly-installed bundles
-
-Command bundles can be explicitly installed using `gort bundle install`. Bundles can only be installed this way by an adequately-privileged user (generally an administrator), and are disabled by default.
+Command bundles can be explicitly installed using `gort bundle install`. Bundles can only be installed this way by an adequately-privileged user (an administrator or other user with the `gort:manage_bundles` permission), and are disabled by default.
 
 See [Managing Bundles](managing-bundles.md) for more information on how to explicitly install command bundles.
-
-### Default bundles
-
-Default bundles are described in the `bundles` section of the [Controller Configuration](controller-configuration.md), and are automatically installed and enabled when the controller starts up. 
-
-An example excerpt `bundles` section of a controller configuration is shown below:
-
-```yaml
-...
-
-bundles:
-- name: echo
-  author: Matt Titmus <matthew.titmus@gmail.com>
-  homepage: https://guide.getgort.io
-  description: A test bundle.
-  long_description: |-
-    This is test bundle.
-    There are many like it, but this one is mine.
-
-  docker:
-    image: clockworksoul/relaytest
-    tag: latest
-
-  permissions:
-    - echo
-
-  commands:
-    echo:
-      description: "Echos back anything sent to it, all at once."
-      executable: "/bin/echo"
-      rules:
-        - must have test:echo
-```
-
-As you can see, the bundle YAML format is virtually identical to that used for explicitly-installed bundles, except:
-
-- It's embedded in a `bundles` block
-- It doesn't have a `gort_bundle_version` attribute
-- It doesn't have a `version` attribute.
-
-Bundles installed this way are automatically enabled, and can't be removed or disabled.
 
 ## A Complete Bundle Configuration Example
 

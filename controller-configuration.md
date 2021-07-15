@@ -53,11 +53,6 @@ jaeger:
 # Gort can relay to and from.
 slack:
   [ - <slack> ... ]
-
-# Zero or more default command bundles, which are installed at startup and may
-# not be removed by the API.
-bundles:
-  [ - <bundles> ... ]
 ```
 
 ## &lt;gort&gt;
@@ -200,9 +195,3 @@ api_token: <string>
 # when the bot was added to the account.
 [ bot_name: <string> ]
 ```
-
-## &lt;bundles&gt;
-
-This section is used to define "default bundles", which don't need to be installed or enabled, and cannot be uninstalled.
-
-See the section "Default Bundles" in [Commands and Bundles](commands-and-bundles.md).
