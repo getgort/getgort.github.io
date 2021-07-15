@@ -1,6 +1,6 @@
 # The Gort Guide
 
-***Gort is a work in progress under active heavy development. It is not production (or even alpha) ready! Follow [the Gort project](https://github.com/getgort/gort) for updates!***
+***Gort is considered "minimally viable", but is still a work in progress under active heavy development. Follow [the Gort project](https://github.com/getgort/gort) for updates!***
 
 Gort is a chatbot framework designed from the ground up for chatops.
 
