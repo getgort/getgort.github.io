@@ -10,19 +10,27 @@ This page will tell you how to quickly create a Slack Bot User and get Gort up a
 
 1. If you haven't done so already, [create a new Slack workspace](https://slack.com/help/articles/206845317-Create-a-Slack-workspace).
 
-1. Use this link to create a new Slack (Classic) app: [https://api.slack.com/apps?new_classic_app=1](https://api.slack.com/apps?new_classic_app=1). Choose your application name and select the workspace you just created, and click "Create App".
+1. Use this link to create a new Slack app: [https://api.slack.com/apps?new_app=1](https://api.slack.com/apps?new_app=1). Choose to create your app "From an app manifest".
 
-1. Under "Add features and functionality", click "Bots". This will bring you to "App Home".
+1. Select your workspace and click "Next".
 
-1. Click the "Add Legacy Bot User" button. Enter the display name and username, and click "Add".
+1. Copy the contents of the manifest file _slackapp.yaml_ into the code box below "Enter app manifest below", replacing the existing content. Click "Next".
 
-1. On the left-hand bar, under "Settings", click "Basic Information", then click the "Install to Workspace" button.
+1. Review the summary and click "Create" to create your app.
+
+1. On the left-hand bar, under "Settings", click "Basic Information".
+
+1. Under "App-Level Tokens", click "Generate Token and Scopes".
+
+1. Enter a name for your token, click "Add Scope" and select "connections:write". Click "Generate".
+
+1. Copy the app token that starts with `xapp-` and paste it into the `slack` section of your `development.yml` config file as `app_token`. Click "Done".
+
+1. On the left-hand bar, under "Settings", click "Install App".
 
 1. You'll get a screen that says something like "Gort is requesting permission to access the $NAME Slack workspace"; click "Allow"
 
-1. On left-hand bar, under "Features", click "OAuth & Permissions".
-
-1. At the top of the screen, you should see "OAuth Tokens for Your Workspace" containing a "Bot User OAuth Token" that starts with `xoxb-`. Copy that value, and paste it into the `slack` section of your `development.yml` config file as `api_token`.
+1. At the top of the screen, you should see "OAuth Tokens for Your Workspace" containing a "Bot User OAuth Token" that starts with `xoxb-`. Copy that value, and paste it into the `slack` section of your `development.yml` config file as `bot_token`.
 
 ## Build the Gort Image
 
