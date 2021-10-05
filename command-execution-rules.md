@@ -100,7 +100,7 @@ Conditional sets can include zero or more values between square brackets. Regula
 * `foo:bar with any arg in ['wubba', /^f.*/, 10] must have foo:read`
 * `foo:bar with all arg in [10, 'baz', 'wubba'] must have foo:read`
 * `foo:bar with all option < 10 must have foo:read`
-* `foo:bar with all options in ['staging', 'list'] must have foo:read`
+* `foo:bar with all option in ['staging', 'list'] must have foo:read`
 
 ### Combining Qualifiers
 
@@ -132,31 +132,88 @@ For example, the following are rule examples with valid permission settings:
 
 Note the special `allow` keyword, which can be used in lieu of a permissions clause to allow a command to be executed by any registered user in Gort.
 
+## Formal Definition
+
+Gort's command execution rule syntax may seem quite English-like, but it's actually a well-structured syntax describable as a formal [context-free grammar](https://en.wikipedia.org/wiki/Context-free_grammar).
+
+For your reference, we have included the notation for Gort's command execution using [Backus–Naur form](https://en.wikipedia.org/wiki/Backus%E2%80%93Naur_form), a metasyntax notation for context-free grammars that's often used to describe the syntax of computing languages used in computing.
+
+```
+<rule>              ::= <arguments> " " <permissions> | <permissions> ;
+
+<arguments>         ::= "with " <argument> ;
+
+<argument>          ::= <argument_part> | <argument_part> " " <conditional> " " <argument> ;
+
+<argument_part>     ::= <argument_single> | <argument_plural> ;
+
+<argument_single>   ::= <variable_single> " " <operator> " " <variable_single> ;
+
+<argument_plural>   ::= "all " <defined_set> " " <operator_set> " " <variable_set> | "any " <defined_set> " " <operator_set> " " <variable_set> ;
+
+<defined_set>       ::= "arg" | "option" ;
+
+<operator_set>      ::= "in" | <operator> ;
+
+<operator>          ::= "==" | "!=" | "<" | "<=" | ">" | ">=" ;
+
+<variable_single>   ::= "arg[" <literal_integer> "]" | "option[" <literal_string> "]" | <literal> ;
+
+<variable_set>      ::= "[" <variable_list> "]" ;
+
+<variable_list>     ::= <variable_single> | <variable_single> "," <variable_set> ;
+
+<conditional>       ::= "and" | "or" ;
+
+<permissions>       ::= "allow" | "must have " <permission>  ;
+
+<permission>        ::= <permission_part> | <permission_part> " " <conditional> " " <permission> ;
+
+<permission_part>   ::= <permission_single> | <permission_plural> ;
+
+<permission_single> ::= <name> ":" <name> ;
+
+<permission_plural> ::= "all in " <permission_set> | "any in " <permission_set> ;
+
+<permission_list>   ::= <permission_single> | <permission_single> ", " <permission_list> ;
+
+<permission_set>    ::= "[" <permission_list> "]" ;
+
+<literal>           ::= <literal_bool> | <literal_string> | <literal_number> | <literal_regex> ;
+
+<literal_bool>      ::= "true" | "false" ;
+
+<literal_string>    ::= '"' <string> '"' | "'" <string> "'" ;
+
+<literal_number>    ::= <literal_integer> | <literal_float> ;
+
+<literal_regex>     ::= "/" <regex> "/" ;
+
+<literal_integer>   ::= <digit>+ ;
+
+<literal_float>     ::= <digit>+ "." <digit>+ ;
+
+<digit>             ::= "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9" ;
+
+<letter>            ::= "A" | "B" | "C" | "D" | "E" | "F" | "G" | "H" | "I" | "J" | "K" | "L" | "M" | "N" | "O" | "P" | "Q" | "R" | "S" | "T" | "U" | "V" | "W" | "X" | "Y" | "Z" | "a" | "b" | "c" | "d" | "e" | "f" | "g" | "h" | "i" | "j" | "k" | "l" | "m" | "n" | "o" | "p" | "q" | "r" | "s" | "t" | "u" | "v" | "w" | "x" | "y" | "z" ;
+
+<symbol>            ::=  "|" | " " | "!" | "#" | "$" | "%" | "&" | "(" | ")" | "*" | "+" | "," | "-" | "." | "/" | ":" | ";" | ">" | "=" | "<" | "?" | "@" | "[" | "\" | "]" | "^" | "_" | "`" | "{" | "}" | "~"
+
+<rune>              ::= <letter> | <digit> | <symbol> ;
+
+<string>             ::= <rune>+
+
+<character>         ::= <letter> | <digit> ;
+
+<name>              ::= <character>+ ;
+```
+
 ## Todo
 
-1. Built-in/standard permissions (esp. for Gort administration actions)
-1. Built-in functions in conditions?
-1. Access to user/group/adapter attributes in conditions?
+The following list includes some features that are considering adding to the command execution rules language:
 
-<!-- ## Site Namespace
+1. Built-in/standard permissions (especially for Gort administration actions)
+1. Syntax to access user/group/adapter attributes in rule conditions
+1. Built-in support functions in conditions?
 
-The site namespace is used when trying to set permissions for a user, group, or role. This does not have to be command specific. You may use site permissions when deciding what group should have permissions to execute certain commands, in specific environments, within certain groups.
-
-A user can only create and delete permissions from the site namespace. You cannot delete the permissions that are part of a command bundle.
-
-For example, let's say your organization has an IT group, "it", an engineering group, "eng", and a QA group, "qa". As a result, you have 3 different environments "prod", "test" and "stage". There are certain tasks that can be performed in each environment, but you must belong to the correct group and be operating in the correct environment.
-
-So we will assume that The IT group operates in "prod", QA in "qa", and Engineering in "staging", though IT should be able to handle certain tasks in all environments such as patch updates and the sort.
-
-Let's create some example commands: `foo:deploy`, `foo:patch`, `foo:delete`, `foo:readlog`
-
-For the examples sake, we'll have the example permissions map to these commands such that they may look like: `foo:p_deploy`, `foo:p_patch`, `foo:p_delete`, `foo:p_readlog`
-
-We'll set up site permissions based on each group and each environment: `site:prod`, `site:test`, `site:stage`, `site:it`, `site:qa`, `site:eng`.
-
-Some resulting rules may look like the following:
-
-* `foo:deploy with option[environment] == 'prod' must have all in [site:it, site:prod, foo:p_deploy]`
-* `foo:deploy with option[environment] == 'qa' must have site:test and foo:p_deploy`
-* `foo:deploy with option[environment] == 'stage' must have site:stage and foo:p_deploy`
-* `foo:patch must have all in [foo:p_patch, site:it] or all in [site:qa, site:test, foo:p_patch] or all in [site:eng, site:stage, foo:p_patch]` -->
+If any of these is particularly important to you, or if you have an idea for a feature not listed here, please feel free to [create an issue](https://github.com/getgort/gort/issues/new).
