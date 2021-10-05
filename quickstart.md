@@ -14,7 +14,7 @@ This page will tell you how to quickly create a Slack Bot User and get Gort up a
 
 1. Select your workspace and click "Next".
 
-1. Copy the contents of the manifest file _slackapp.yaml_ into the code box below "Enter app manifest below", replacing the existing content. Click "Next".
+1. Copy the contents of the manifest file [_slackapp.yaml_](https://github.com/getgort/gort/blob/main/slackapp.yaml) into the code box below "Enter app manifest below", replacing the existing content. Click "Next".
 
 1. Review the summary and click "Create" to create your app.
 
