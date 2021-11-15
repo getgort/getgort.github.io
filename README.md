@@ -36,7 +36,7 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
    1. [Configuring Gort](configuration.md)
    1. [Deploying Gort](deployment.md)
    1. [Bootstrapping Gort](bootstrapping.md) <!-- inc. Profiles and local identity files? -->
-1. Users, Groups, and Roles
+1. [Users, Groups, and Roles](users-groups-roles.md)
    1. [User Management](managing-users.md)
    1. [Group Management](managing-groups.md)
    1. [Role Management](managing-roles.md)
@@ -52,6 +52,7 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
    1. [Command Execution Rules](command-execution-rules.md)
    1. Installing Your First Command Bundle
 1. [Command Execution Rules](command-execution-rules.md) + [Permissions and Rules](permissions-and-rules.md)
+1. [Output Formatting Templates](templates.md)
 1. [Audit Log Events](audit-log-events.md)
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 

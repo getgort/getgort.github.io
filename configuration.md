@@ -4,7 +4,11 @@ Gort is configured via a configuration file, which is used to describe everythin
 
 Gort can reload its configuration during runtime whenever it detects that its file has been modified. If the new configuration is not well-formed, the changes will not be applied.
 
-## The configuration file
+## Reloading a Configuration
+
+If the configuration file is changed, Gort can be instructed to "hot reload" its by sending it a SIGHUP or issuing a `GET` request to its `v2/reload/` endpoint. If the new configuration is not well-formed, the changes will not be applied.
+
+## The Configuration File
 
 Gort configured using a [YAML](https://en.wikipedia.org/wiki/YAML)-formatted configuration file. To specify which configuration file to load, use the `--config` flag to the `gort start` command.
 
@@ -21,6 +25,7 @@ Generic placeholders are defined as follows:
 - `<port>`: a valid port number ranging from 0 to 65535.
 - `<secret>`: a regular string that is a secret, such as a password.
 - `<string>`: a regular string.
+- `<template>`: a Gort [output formatting template](templates.md).
 
 The other placeholders are specified separately.
 
@@ -45,20 +50,28 @@ database:
 docker:
   [ - <docker> ... ]
 
-# Configures the Jaeger host, to which Gort sends internal trace telemetry.
-jaeger:
-  [ - <jaeger> ... ]
+# Configures Gort's Docker host data.
+kubernetes:
+  [ - <kubernetes> ... ]
+
+# A list of zero or more configurations that describe Discord servers that
+# Gort can relay to and from.
+discord:
+  [ - <discord> ... ]
 
 # A list of zero or more configurations that describe Slack workspaces that
 # Gort can relay to and from.
 slack:
   [ - <slack> ... ]
+
+# Configures the Jaeger host, to which Gort sends internal trace telemetry.
+jaeger:
+  [ - <jaeger> ... ]
 ```
 
 ## &lt;gort&gt;
 
 This section contains the settings for the behavior of the Gort controller.
-
 
 ```yaml
 # Gort will automatically create accounts for new users when set.
@@ -145,6 +158,8 @@ If this section is absent, the Gort controller will use an "in memory" data mode
 
 This section is used to configure Gort's Docker host data. At the moment it only includes two values (which are likely to move into a relay configuration, when that becomes a thing).
 
+This may not be defined if a `kubernetes` block is also defined.
+
 ```yaml
 # Defines the location of the Docker port. Required.
 host: <path>
@@ -153,6 +168,69 @@ host: <path>
 # attached to this network. This can be used to allow workers to communicate
 # with a containerized Gort controller.
 [ network: <string> ]
+```
+
+## &lt;kubernetes&gt;
+
+This section is used to configure Gort's behavior when deployed in a Kubernetes cluster.
+
+This may not be defined if a `docker` block is also defined.
+
+```yaml
+# The label and field selectors for Gort's endpoint resource. These are used
+# by Gort to dynamically find its own API endpoint. If both are omitted the
+# label selector "app=gort" is used.
+[ endpoint_label_selector: <string> ]
+[ endpoint_field_selector: <string> ]
+
+# The selectors for Gort's pod resource. Used to dynamically find the
+# API endpoint. If both are omitted the label selector "app=gort" is used.
+
+# The label and field selectors for Gort's pod resource. These are used by the
+# Gort controller to dynamically find its own pod. If both are omitted the
+# label selector "app=gort" is used.
+[ pod_field_selector: <string> ]
+[ pod_label_selector: <string> ]
+```
+
+## &lt;discord&gt;
+
+This section is used to describe one or more Discord servers that Gort can receive commands from and relay responses to.
+
+Note that `discord` allows multiple elements, which means that it's possible to configure Gort to interact with multiple Discord servers. It may also be used in additions to one or more `slack` definitions.
+
+```yaml
+# An arbitrary name for human labelling purposes. It must be unique among all
+# discord and slack definitions.
+name: <string>
+
+# The Bot OAuth Token (https://discord.com/developers/docs/topics/oauth2)
+# used to connect to Discord.
+bot_token: <string>
+```
+
+## &lt;slack&gt;
+
+This section is used to describe one or more Slack workspaces that Gort can receive commands from and relay responses to.
+
+Note that `slack` allows multiple elements, which means that it's possible to configure Gort to interact with multiple Slack workspaces. It may also be used in additions to one or more `discord` definitions.
+
+```yaml
+# An arbitrary name for human labelling purposes. It must be unique among all
+# discord and slack definitions.
+name: <string>
+
+# Bot User OAuth Access Token (https://api.slack.com/docs/token-types#bot)
+# used to connect to Slack. You want the one that starts with "xoxb".
+api_token: <string>
+
+# The chat icon for the bot. If not defined, it uses the default for the
+# configured bot.
+[ icon_url: <path> ]
+
+# The name of the bot, as it appears in Slack. Defaults to the name used
+# when the bot was added to the account.
+[ bot_name: <string> ]
 ```
 
 ## &lt;jaeger&gt;
@@ -173,25 +251,22 @@ This section is used to configures the Jaeger host to which Gort sends internal 
 [ password: <secret> ]
 ```
 
-## &lt;slack&gt;
+## &lt;templates&gt;
 
-This section is used to describe a Slack workspaces that Gort can receive commands from relay and relay responses to.
-
-Note that `slack` allows multiple elements, which means that it's possible to configure Gort to interact with multiple Slack workspaces.
+The `templates` section allows the default [output formatting templates](templates.md) to be overridden at the application scope. Templates defined here may still be overridden at the bundle and command scopes.
 
 ```yaml
-# An arbitrary name for human labelling purposes.
-name: <string>
+# A template used to format the outputs from successfully executed commands.
+[ command: <template> ]
 
-# Bot User OAuth Access Token (https://api.slack.com/docs/token-types#bot)
-# used to connect to Slack. You want the one that starts with "xoxb".
-api_token: <string>
+# A template used to format the error messages produced by commands that exit
+# with a non-zero status.
+[ command_error: <template> ]
 
-# The chat icon for the bot. If not defined, it uses the default for the
-# configured bot.
-[ icon_url: <path> ]
+# A template used to format standard informative (non-error) messages from
+# the Gort system (not commands).
+[ message: <template> ]
 
-# The name of the bot, as it appears in Slack. Defaults to the name used
-# when the bot was added to the account.
-[ bot_name: <string> ]
+# A template used to format error messages from the Gort system (not commands).
+[ message_error: <template> ]
 ```

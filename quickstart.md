@@ -22,7 +22,7 @@ _For more information, see: [Configuration](configuration.md)._
    * If you're using Slack, remove (or comment out) the `discord` section.
    * If you're using Discord, remove (or comment out) the `slack` section.
 
-## 3. Create Your Bot User 
+## 3. Create Your Bot User
 
 Whichever chat implementation you use, you'll first have to create a bot user. Choose the section below that's appropriate for your preferred chat provider.
 
