@@ -6,18 +6,18 @@ The Gort controller is the core Gort service, which relays messages to and from 
 
 See [Gort Architecture](architecture.md) for more information.
 
-## Prerequisites
+## 1. Prerequisites
 
 To install Gort, you'll need the following:
 
 - [Go compiler](https://golang.org/doc/install) (if using `go install` or `go build`)
 - [Docker](https://docs.docker.com/get-docker/)
 
-## Installing Gort
+## 2. Installing Gort
 
 Like most software, before you run the Gort controller, you have to install it. You have three options for exactly how you want to do that.
 
-### Installing Gort via `go install`
+### a. Installing Gort via `go install`
 
 If you have [Go installed](https://golang.org/doc/install), you can build and install Gort in one command using the `go install` command.
 

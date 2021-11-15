@@ -29,20 +29,31 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
 
 ## User Documentation
 
-1. [Quick Start](quickstart.md)
 1. [Gort Architecture](architecture.md)
+1. [Quick Start](quickstart.md)
 1. [Getting Started](getting-started.md)
-1. [Controller Configuration](controller-configuration.md)
-1. [Bootstrapping Gort](bootstrapping.md)
-1. [Commands and Bundles](commands-and-bundles.md)
-1. [Managing Bundles](managing-bundles.md)
-1. [Bundle Configurations](bundle-configurations.md)
-1. [Writing a Command Bundle](writing-a-command-bundle.md)
-1. [Permissions and Rules](permissions-and-rules.md)
-1. [Command Execution Rules](command-execution-rules.md)
-1. [Command Environment Variables](command-environment-variables.md)
-1. [Returning Data](returning-data.md)
-1. [User Management](user-management.md)
+   1. Installation
+   1. [Configuration](configuration.md)
+   1. Installing TLS Certificates
+   1. [Bootstrapping Gort](bootstrapping.md)
+   <!-- 1. Profiles and local identity files? -->
+   1. The Commands Lifecycle
+1. Users, Groups, and Roles
+   1. [User Management](user-management.md)
+   1. Group Management
+   1. Role Management
+1. Commands (from [Commands and Bundles](commands-and-bundles.md))
+   1. Commands as Containers
+   1. [Command Environment Variables](command-environment-variables.md)
+   1. [Returning Data](returning-data.md)
+   1. Designing ChatOps Commands
+1. Command Bundles (from [Commands and Bundles](commands-and-bundles.md))
+   1. [Bundle Configurations](bundle-configurations.md)
+   1. [Managing Bundles](managing-bundles.md)
+   1. [Writing a Command Bundle](writing-a-command-bundle.md)
+   1. [Command Execution Rules](command-execution-rules.md)
+   1. Installing Your First Command Bundle
+1. [Command Execution Rules](command-execution-rules.md) + [Permissions and Rules](permissions-and-rules.md)
 1. [Audit Log Events](audit-log-events.md)
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 
