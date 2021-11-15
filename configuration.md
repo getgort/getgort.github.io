@@ -1,4 +1,4 @@
-# Gort Controller Configuration
+# Configuring Gort
 
 Gort is configured via a configuration file, which is used to describe everything from database and chat provider configurations to default command bundles.
 

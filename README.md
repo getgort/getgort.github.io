@@ -30,18 +30,16 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
 ## User Documentation
 
 1. [Gort Architecture](architecture.md)
+   <!-- 1. The Commands Lifecycle -->
 1. [Quick Start](quickstart.md)
 1. [Getting Started](getting-started.md)
-   1. Installation
-   1. [Configuration](configuration.md)
-   1. Installing TLS Certificates
-   1. [Bootstrapping Gort](bootstrapping.md)
-   <!-- 1. Profiles and local identity files? -->
-   1. The Commands Lifecycle
+   1. [Configuring Gort](configuration.md)
+   1. [Deploying Gort](deployment.md)
+   1. [Bootstrapping Gort](bootstrapping.md) <!-- inc. Profiles and local identity files? -->
 1. Users, Groups, and Roles
-   1. [User Management](user-management.md)
-   1. Group Management
-   1. Role Management
+   1. [User Management](managing-users.md)
+   1. [Group Management](managing-groups.md)
+   1. [Role Management](managing-roles.md)
 1. Commands (from [Commands and Bundles](commands-and-bundles.md))
    1. Commands as Containers
    1. [Command Environment Variables](command-environment-variables.md)
