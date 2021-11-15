@@ -53,6 +53,8 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
    1. Installing Your First Command Bundle
 1. [Command Execution Rules](command-execution-rules.md) + [Permissions and Rules](permissions-and-rules.md)
 1. [Output Formatting Templates](templates.md)
+   1. [The Response Envelope](templates-response-envelope.md)
+   1. [Template Functions](templates-functions.md)
 1. [Audit Log Events](audit-log-events.md)
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 
