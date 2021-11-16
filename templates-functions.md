@@ -28,7 +28,7 @@ Can be used to decorate or modify the behavior of the entire template. If a `{{ 
 
 Used to describe a text block or element. They may be used inside of a  `{{section}}`/`{{endsection}}` pair.
 
-Example: `{{ text }}This is a standard text block.{{ endtext }}`
+Example: `{{ text }}This is a plain text block.{{ endtext }}`
 
 | Function    | Description | Example |
 | ----------- | ----------- | ------- |
@@ -36,30 +36,37 @@ Example: `{{ text }}This is a standard text block.{{ endtext }}`
 | `monospace` | All text in the block is monospaced. | `{{ text \| monospace true }}THIS IS CODE.{{ endtext }}` |
 | `title`     | Adds a title to the text block.  | `{{ text \| title "Favorite Food" }}Pizza{{ endtext }}` |
 
+
 ### `{{section}}` and `{{endsection}}`
 
-The `{{section}}` and `{{endsection}}` tag
+Sections can be used to group elements together. These are only supported in Slack; they are ignored in Discord.
 
-#### Section Functions
+These are often used with a `range` loop of some kind over a collection:
 
-
+```
+{{ text }}Here are your results:{{ endtext }}
+{{ range $index, $loc := .Payload.Locations }}
+{{ section }}
+{{ text | title $loc.Title | inline true }}$loc.Name{{ endtext }}
+{{ image $loc.Image | thumbnail true }}
+{{ divider }}
+{{ endsection }}
+```
 
 ### `{{divider}}`
 
-The `{{divider}}` tag
-
-
+Emits a simple divider, used to break up blocks.
 
 ### `{{image}}`
 
-The `{{image}}` tag
+Outputs an image whose URL is specified in the argument.
 
+Example: `{{ image "https://example.com/img/image1.png" }}`
 
+| Function    | Description | Example |
+| ----------- | ----------- | ------- |
+| `thumbnail` | Causes the image to be presented as a thumbnail (usually for a block or section). | `{{ image .Payload.Image \| thumbnail true }}` |
 
-### `{{alt}}`
+## Additional Functions
 
-The `{{alt}}` tag
-
-## Functions
-
-## Fields
+In addition to the above, all of the [Sprig library](https://masterminds.github.io/sprig/) functions are supported as well.
