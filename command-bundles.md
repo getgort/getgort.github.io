@@ -8,11 +8,11 @@ A bundle configuration is a [YAML](https://yaml.org/)-formatted document that de
 
 See [Bundle Configurations](bundle-configurations.md) for more information.
 
-## Command Execution Rules
+## Permissions and Rules
 
-Importantly, each command also includes one or more _rules_, which specify precisely who may execute the commands (i.e., which users with which permissions). Permissions are namespaced to the bundle they originate from, so installing a bundle's permissions will never conflict with any existing rules. Except for `admin`, permissions are never automatically assigned to users.
+Importantly, each command also includes one or more _rules_, which allows operators fine-grained control over who is able to execute chat commands, extending even to control over particular invocations of chat commands.. Permissions are namespaced to the bundle they originate from, so installing a bundle's permissions will never conflict with any existing rules. Except for `admin`, permissions are never automatically assigned to users.
 
-See [Command Execution Rules](command-execution-rules.md) for more information.
+See [Permissions and Rules](permissions-and-rules.md) for more information.
 
 ## Writing a Command Bundle
 

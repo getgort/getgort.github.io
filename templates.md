@@ -1,6 +1,6 @@
 # Output Format Templates
 
-Output format templates allow the look and feel of any messages sent to users, including both Gort system messages and command output, to be customized (within the constraints imposed by a given chat provider). Properly used, templates can provide a very powerful tool for maximizing the user experience.
+Output format templating is a powerful feature that allows you to control the look and feel (and, to some degree, content) of any information sent to users. Both Gort system messages and command output support templates for customization (within the constraints imposed by a given chat provider).
 
 ## The four template types
 
