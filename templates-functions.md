@@ -49,17 +49,17 @@ These are often used with a `range` loop of some kind over a collection:
 {{ section }}
 {{ text | title $loc.Title | inline true }}$loc.Name{{ endtext }}
 {{ image $loc.Image | thumbnail true }}
-{{ divider }}
 {{ endsection }}
+{{ end }}
 ```
 
 ### `{{divider}}`
 
-Emits a simple divider, used to break up blocks.
+Emits a simple divider, used to break up blocks. 
 
 ### `{{image}}`
 
-Outputs an image whose URL is specified in the argument.
+Outputs an image whose URL is specified in the argument. They may be used inside of a  `{{section}}`/`{{endsection}}` pair.
 
 Example: `{{ image "https://example.com/img/image1.png" }}`
 
