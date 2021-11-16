@@ -36,26 +36,25 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
    1. [Configuring Gort](configuration.md)
    1. [Deploying Gort](deployment.md)
    1. [Bootstrapping Gort](bootstrapping.md) <!-- inc. Profiles and local identity files? -->
-1. [Users, Groups, and Roles](users-groups-roles.md)
-   1. [User Management](managing-users.md)
-   1. [Group Management](managing-groups.md)
-   1. [Role Management](managing-roles.md)
-1. Commands (from [Commands and Bundles](commands-and-bundles.md))
-   1. Commands as Containers
+1. [Users, Groups, and Roles](users-groups-roles.md) (COMING SOON!)
+   <!-- 1. [User Management](managing-users.md) (COMING SOON!)
+   1. [Group Management](managing-groups.md) (COMING SOON!)
+   1. [Role Management](managing-roles.md) (COMING SOON!) -->
+1. [Commands and Bundles](commands-and-bundles.md)
+   1. [Commands as Containers](commands-as-containers.md)
    1. [Command Environment Variables](command-environment-variables.md)
-   1. [Returning Data](returning-data.md)
-   1. Designing ChatOps Commands
-1. Command Bundles (from [Commands and Bundles](commands-and-bundles.md))
+   1. [Designing Commands](designing-commands.md) (COMING SOON!)
+1. [Command Bundles](command-bundles.md)
    1. [Bundle Configurations](bundle-configurations.md)
-   1. [Managing Bundles](managing-bundles.md)
-   1. [Writing a Command Bundle](writing-a-command-bundle.md)
    1. [Command Execution Rules](command-execution-rules.md)
-   1. Installing Your First Command Bundle
+   1. [Writing a Command Bundle](writing-a-command-bundle.md) (COMING SOON!)
+   1. [Managing Bundles](managing-bundles.md)
+   <!-- 1. Installing Your First Command Bundle (COMING SOON!) -->
 1. [Command Execution Rules](command-execution-rules.md) + [Permissions and Rules](permissions-and-rules.md)
 1. [Output Formatting Templates](templates.md)
    1. [The Response Envelope](templates-response-envelope.md)
-   1. [Template Functions](templates-functions.md)
-1. [Audit Log Events](audit-log-events.md)
+   1. [Template Functions](templates-functions.md) (COMING SOON!)
+<!-- 1. [Audit Log Events](audit-log-events.md) (COMING SOON!) -->
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 
 <!-- 

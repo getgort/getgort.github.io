@@ -2,7 +2,7 @@
 
 A command bundle is a set of related commands that, when installed in Gort, may be executed by users from any connected (and allowed) chat service. A bundle configuration specifies which binary to execute, and who may execute the commands (i.e., which users with which permissions).
 
-*Currently, Gort only supports commands that have been built into a Docker image, but a future iteration will support the execution of commands natively on a relay's host.*
+<!-- *Currently, Gort only supports commands that have been built into a Docker image, but a future iteration will support the execution of commands natively on a relay's host.* -->
 
 ## A Minimal Bundle Configurations
 

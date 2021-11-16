@@ -1,4 +1,4 @@
-# Getting Started
+# Deploying Gort
 
 This guide will instruct you through the process of installing the Gort controller.
 

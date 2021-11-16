@@ -26,7 +26,8 @@ _For more information, see: [Configuration](configuration.md)._
 
 Whichever chat implementation you use, you'll first have to create a bot user. Choose the section below that's appropriate for your preferred chat provider.
 
-IMPORTANT: Both sections involve the creation of a secret bot token. Please protect this token carefully: if someone steals it, they can make your bot do whatever they want. You don’t want that.
+|![](https://upload.wikimedia.org/wikipedia/commons/thumb/1/17/Warning.svg/156px-Warning.svg.png) | IMPORTANT: Both sections below involve the creation of a secret bot token. Please protect this token carefully: if someone steals it, they can make your bot do whatever they want. You don’t want that.
+|---|---|
 
 ### 3a. Create a Slack Bot User
 
