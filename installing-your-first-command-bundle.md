@@ -16,10 +16,9 @@ For our example we will be using the following config. It's a simple bundle with
 ---
 gort_bundle_version: 1
 
-name: example
-version: 0.0.1
-permissions:
-  - date
+name: my_bundle
+description: My bundle
+version: "0.0.1"
 docker:
   image: ubuntu
   tag: 20.04
@@ -49,7 +48,7 @@ Enabling commands is easy though. We'll use the `gort` CLI! By default the highe
 ```
 $ gort bundle enable my_bundle
 
-$ gort bundle enable my_bundle 0.2.0
+$ gort bundle enable my_bundle 0.0.1
 ```
 
 ## Success!
@@ -63,14 +62,13 @@ User:
 Gort:
 I know about these commands:
 
-- example:date
 - gort:bundle
 - gort:group
 - gort:help
 - gort:role
 - gort:user
 - gort:version
-
+- my_bundle:date
 
 Try calling `gort:help COMMAND` to find out more.
 ```

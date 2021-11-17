@@ -58,7 +58,6 @@ COLD STORAGE:
 1. [Audit Log Events](audit-log-events.md) (COMING SOON!)
 1. [Designing ChatOps Commands](designing-chatops-commands.md)
 1. [Writing a Command Bundle](writing-a-command-bundle.md)
-1. [Templates](templates.md)
 1. [Dynamic Command Configuration](dynamic-command-configuration.md)
 1. [Configuring Password Resets](configuring-password-resets.md)
 1. [Installing And Managing Relays](installing-and-managing-relays.md)
