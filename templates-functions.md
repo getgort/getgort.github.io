@@ -14,6 +14,16 @@ The supported elements are detailed below.
 
 ## Tags (Actions)
 
+### `{{alt}}`
+
+Provides alternative text to be shown if other elements in a message cannot be rendered. Only the first instance of `{{alt}}` will be shown.
+
+Example: `{{ alt "This is alternative text." }}`
+
+### `{{divider}}`
+
+Emits a simple divider, used to break up blocks. 
+
 ### `{{ header }}`
 
 Can be used to decorate or modify the behavior of the entire template. If a `{{ header }}` is used, it must be the first line of the template.
@@ -53,9 +63,6 @@ These are often used with a `range` loop of some kind over a collection:
 {{ end }}
 ```
 
-### `{{divider}}`
-
-Emits a simple divider, used to break up blocks. 
 
 ### `{{image}}`
 
