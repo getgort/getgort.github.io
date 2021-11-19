@@ -64,7 +64,7 @@ A given command may need some additional information that would not be shared on
 
 Bundles (or "command bundles") are the packaging unit for collections of one or more commands. 
 
-Each references a single [Docker container image](https://www.docker.com/resources/what-container) that contains all the binaries and other dependencies. They also include some metadata about the commands, including a small amount of documentation and other metadata. See [Writing A Command Bundle](writing-a-command-bundle.md) for more specifics.
+Each references a single [Docker container image](https://www.docker.com/resources/what-container) that contains all the binaries and other dependencies for executing one or more commands. They also include some data about the commands, including a small amount of documentation and other metadata. See [Writing A Command Bundle](writing-a-command-bundle.md) for more specifics.
 
 Bundles can be installed into Gort by an administrator (or any user with the `manage_commands` permission) using the `gort` command-line utility. See [Managing Bundles](managing-bundles.md) for more on bundle installation.
 
@@ -115,4 +115,4 @@ By default, the command uses the image's [default entrypoint](https://docs.docke
 
 Any parameters you type into the command line are passed directly to the containerized binary, which can handle them just like a normal command-line execution. This allows you to implement your command using a CLI framework in any language you like.
 
-See [Writing A Command Bundle](writing-a-command-bundle.md) for more details.
+See [Commands as Containers](commands-as-containers.md) for more details.

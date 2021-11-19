@@ -5,7 +5,7 @@ Since interactions with Gort require a user account, you'll need to bootstrap yo
 The canonical way to do this is to use the `gort bootstrap` command:
 
 ```
-$ gort bootstrap --allow-insecure localhost:4000
+$ gort bootstrap --allow-insecure https://localhost:4000
 User "admin" created and credentials appended to gort config.
 ```
 
@@ -19,13 +19,12 @@ If you take a look in `~/.gort/profile`, you'll begin to see what just happened.
 $ cat ~/.gort/profile 
 
 defaults:
-    profile: localhost
+    profile: localhost_4000
 localhost:
-    url: http://localhost:4000
+    url: https://localhost:4000
     password: cZO5E4i8+T6vVRO8m4EvYEyGI2fn86iZ
     user: admin
     allow_insecure: true
-    tls_cert_file: ""
 ```
 
 Here, we can see that a user named `admin` has been created for us on the Gort controller. A password has also been generated for this user. Now, whenever we run any `gort` commands from this machine, these credentials will be used by default to make authenticated API calls.
@@ -49,7 +48,6 @@ $ gort permission list
 NAME                   
 gort:manage_commands   
 gort:manage_groups     
-gort:manage_permissions
 gort:manage_roles      
 gort:manage_users      
 ```
@@ -59,7 +57,6 @@ That's a lot of permissions. Gort helps us out by creating an `admin` role to co
 ```
 $ gort role info admin
 Name         admin
-ID           15c77231-e53f-4ab9-b438-64b4a2f636d6
 Permissions  manage_commands, manage_groups, manage_permissions, manage_roles, manage_users
 Groups       admin
 ```
@@ -68,7 +65,6 @@ Finally, we have a group that is also named `admin` with the `admin` user as its
 
 ```
 $ gort group info admin
-ID     88f30dec-ca13-4d92-a6bd-4631acc7424b
 Name   admin
 Users  admin
 Roles  admin
