@@ -34,7 +34,7 @@ Can be used to decorate or modify the behavior of the entire template. If a `{% 
 | `title`     | Adds a title to the output block. | `{% raw %}{{ header \| title "Error?" }}{% endraw %}` |
 
 
-### `{% raw %}{{text}}{% raw %}` and `{% endraw %}{{endtext}}{% endraw %}`
+### `{% raw %}{{text}}{% raw %}` and `{% raw %}{{endtext}}{% endraw %}`
 
 Used to describe a text block or element. They may be used inside of a  `{% raw %}{{section}}{% endraw %}`/`{% raw %}{{endsection}}{% endraw %}` pair.
 
