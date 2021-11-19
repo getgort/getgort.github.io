@@ -20,7 +20,9 @@ Gort templates use Go's [template syntax](https://pkg.go.dev/text/template) to f
 For example, a very simple _command template_ might look something like the following:
 
 ```
+{% raw %}
 {{ text | monospace true }}{{ .Response.Out }}{{ endtext }}
+{% endraw %}
 ```
 
 This template emits the command's response (`.Response.Out`) as monospaced text, which may look something like the following:
@@ -30,11 +32,13 @@ This template emits the command's response (`.Response.Out`) as monospaced text,
 A slightly more complicated template, this one a _command error template_ (actually the default), is shown below.
 
 ```
+{% raw %}
 {{ header | color "#FF0000" | title .Response.Title }}
 {{ text }}The pipeline failed planning the invocation:{{ endtext }}
 {{ text | monospace true }}{{ .Request.Bundle.Name }}:{{ .Request.Command.Name }} {{ .Request.Parameters }}{{ endtext }}
 {{ text }}The specific error was:{{ endtext }}
 {{ text | monospace true }}{{ .Response.Out }}{{ endtext }}
+{% endraw %}
 ```
 
 This one includes a header with a color and title, as well as some alternating monospaced and standard text. In this case, this will format a command error something like the following:
