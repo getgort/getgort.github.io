@@ -15,10 +15,7 @@ gort_bundle_version: 1
 name: my_bundle
 description: "Does bundle things"
 version: 0.1
-
-docker:
-  image: ubuntu
-  tag: 20.04
+image: ubuntu:20.04
 
 commands:
   date:

@@ -12,7 +12,7 @@ Gort's design philosophy emphasizes flexibility and security by allowing you to:
 
 - Trigger commands through Slack (or another chat provider)
 - Implement commands in any programming language of your choice
-- Packaged commands into bundles that can be installed in Gort
+- Package commands into bundles that can be installed in Gort
 - Organize users into groups, and permissions into roles
 - Use a sophisticated identity and permission system to determine who can use commands
 - Record all activity in an audit log
@@ -25,7 +25,7 @@ Gort was initially conceived of as a Go re-implementation of Operable's [Cog Sla
 
 During our initial design process, we found that many of Cog’s features, however innovative, went largely unused, and the codebase had become difficult to extend and maintain. Additionally, its implementation language -- Elixir -- had relatively few proficient developers. The solution, which was discussed for many months on the Cog Slack workspace, was to rewrite Cog from scratch in such as Go, removing some of less-used functionality and reducing complexity in the process.
 
-This gave us the opportunity to consider and possibly redefine what Cog was meant to be. To choose the features that make sense, and to discard those that don't. In this way, Gort can be described more as a “spiritual successor” to Cog than a faithful re-implementation.
+This gave us the opportunity to consider and possibly redefine what Cog was meant to be. To choose the features that make sense, and to discard those that don't. In this way, Gort can be described more as a "spiritual successor" to Cog than a faithful re-implementation.
 
 ## User Documentation
 
@@ -47,7 +47,7 @@ This gave us the opportunity to consider and possibly redefine what Cog was mean
 1. [Command Execution Rules](command-execution-rules.md)
 1. [Output Formatting Templates](templates.md)
    1. [The Response Envelope](templates-response-envelope.md)
-   1. [Template Functions](templates-functions.md) 
+   1. [Template Functions](templates-functions.md)
 1. [Going Forward: Features to Look Forward To](going-forward.md)
 <!-- 1. [Users, Groups, and Roles](users-groups-roles.md) (COMING SOON!) -->
    <!-- 1. [User Management](managing-users.md) (COMING SOON!)

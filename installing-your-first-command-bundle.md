@@ -19,9 +19,8 @@ gort_bundle_version: 1
 name: my_bundle
 description: My bundle
 version: "0.0.1"
-docker:
-  image: ubuntu
-  tag: 20.04
+image: ubuntu:20.04
+
 commands:
   date:
     executable: [ "/bin/date" ]
