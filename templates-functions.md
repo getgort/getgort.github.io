@@ -47,7 +47,7 @@ Example: `{% raw %}{{ text }}This is a plain text block.{{ endtext }}{% endraw %
 | `title`     | Adds a title to the text block.  | `{% raw %}{{ text \| title "Favorite Food" }}Pizza{{ endtext }}{% endraw %}` |
 
 
-### `{% raw %}{{section}}{% raw %}` and `{% endraw %}{{endsection}}{% endraw %}`
+### `{% raw %}{{section}}{% raw %}` and `{% raw %}{{endsection}}{% endraw %}`
 
 Sections can be used to group elements together. These are only supported in Slack; they are ignored in Discord.
 
