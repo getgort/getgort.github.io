@@ -10,7 +10,7 @@ Gort templates use Go's [template syntax](https://pkg.go.dev/text/template).
 A very simple template might look something like the following:
 
 ```
-{{ text | monospace true }}{{ .Response.Out }}{{ endtext }}
+{% raw %}{{ text | monospace true }}{{ .Response.Out }}{{ endtext }}{% endraw %}
 ```
 
 This template emits the command's response as monospaced text.
@@ -122,7 +122,7 @@ For example, if the contents of the command response are as follows:
 }
 ```
 
-So a template containing the instructions `{{.Payload.User}}, {{.Payload.Company}}` would resolve as `Michael Scott, Dunder Mifflin`.
+So a template containing the instructions `{% raw %}{{.Payload.User}}, {{.Payload.Company}}{% endraw %}` would resolve as `Michael Scott, Dunder Mifflin`.
 
 If the response isn't structured, `.Response.Structured` will be `false`, and `.Payload` will be a standard string equal to `.Response.Out`. 
 
