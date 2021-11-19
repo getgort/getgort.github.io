@@ -20,7 +20,7 @@ Gort templates use Go's [template syntax](https://pkg.go.dev/text/template) to f
 For example, a very simple _command template_ might look something like the following:
 
 ```
-{{ text | monospace true }}{{ .Response.Out }}{{ endtext }}
+{{"{{ text | monospace true }}{{ .Response.Out }}{{ endtext }}"}}
 ```
 
 This template emits the command's response (`.Response.Out`) as monospaced text, which may look something like the following:
