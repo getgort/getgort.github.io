@@ -125,8 +125,3 @@ For example, if the contents of the command response are as follows:
 So a template containing the instructions `{% raw %}{{.Payload.User}}, {{.Payload.Company}}{% endraw %}` would resolve as `Michael Scott, Dunder Mifflin`.
 
 If the response isn't structured, `.Response.Structured` will be `false`, and `.Payload` will be a standard string equal to `.Response.Out`. 
-
-## Supported Functions
-
-## Examples
-
