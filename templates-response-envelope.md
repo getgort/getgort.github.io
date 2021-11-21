@@ -1,6 +1,5 @@
 # Output Format Templates
 
-
 Output formatting templates are very powerful.
 
 ## Template Basic Format
