@@ -1,22 +1,5 @@
-# Output Format Templates
 
-Output formatting templates are very powerful.
-
-## Template Basic Format
-
-Gort templates use Go's [template syntax](https://pkg.go.dev/text/template).
-
-A very simple template might look something like the following:
-
-```
-{% raw %}{{ text | monospace true }}{{ .Response.Out }}{{ endtext }}{% endraw %}
-```
-
-This template emits the command's response as monospaced text.
-
-But what's `.Response.Out`? That's part of the response envelope.
-
-## The Response Envelope
+# The Response Envelope
 
 The response envelope encapsulates all of the data and metadata around a command request, execution, and response. It's passed into the templating engine, where it can be accessed directly by templates.
 
@@ -29,7 +12,7 @@ The response envelope consists of four major components:
 
 These components (and any sub-components, where relevant) are detailed below.
 
-### .Request 
+## .Request 
 
 The `.Request` object represents the original command request used to execute the command. It contains the original command values as well as the user and adapter data.
 
@@ -44,7 +27,7 @@ The `.Request` object represents the original command request used to execute th
 | `.Request.UserEmail` | string | The email address associated with the user making the request |
 | `.Request.UserName` | string | The Gort username of the user making the request |
 
-### .Request.Bundle
+## .Request.Bundle
 
 The `.Request.Bundle` object represents the bundle that owns the command.
 
@@ -60,7 +43,7 @@ The `.Request.Bundle` object represents the bundle that owns the command.
 | `.Request.Bundle.InstalledBy` | string | 
 | `.Request.Bundle.LongDescription` | string | 
 
-### .Request.Command
+## .Request.Command
 
 The `.Request.Command` object represents the command definition.
 
@@ -72,7 +55,7 @@ The `.Request.Command` object represents the command definition.
 | `.Request.Command.Name` | string | 
 | `.Request.Command.Rules` | []string | 
 
-### .Response
+## .Response
 
 The `.Response` object contains the response text emitted by an executed command.
 
@@ -83,9 +66,9 @@ The `.Response` object contains the response text emitted by an executed command
 | `.Response.Structured` | bool | `true` if the command output is valid JSON. If so, then it also be unmarshalled as `.Payload`; else `.Payload` will be a string (equal to `.Response.Out`).
 | `.Response.Title` | string | A title. Usually only set by the relay for certain internally-detected errors. Generally a short description of the result.
 
-### .Data
+## .Data
 
-The `.Data` object contains about the command execution, including its duration and exit status. If the relay sets an an explicit internal error, it will be here as well.
+The `.Data` object contains data about the command execution, including its duration and exit status. If the relay sets an an explicit internal error, it will be here as well.
 
 | Syntax | Type | Description |
 | ------ | ---- | ----------- |
@@ -93,7 +76,7 @@ The `.Data` object contains about the command execution, including its duration 
 | `.Data.ExitCode` | int16 | ExitCode is the exit code reported by the command.
 | `.Data.Error` | error | Error is set by the relay under certain internal error conditions.
 
-### .Payload
+## .Payload
 
 `.Payload` includes the command output. It's a very special animal, because its contents can very according to the contents and format of the response returned by the command.
 
