@@ -30,8 +30,8 @@ Can be used to decorate or modify the behavior of the entire template. If a `{% 
 
 | Function    | Description | Example |
 | ----------- | ----------- | ------- |
-| `color`     | Adds a colored sidebar to the output block. Must be a hexadecimal string with the format `#RRGGBB`. | `{% raw %}{{ header \| color "#FF0000" }}{% endraw %}` |
-| `title`     | Adds a title to the output block. | `{% raw %}{{ header \| title "Error?" }}{% endraw %}` |
+| `color`     | Adds a colored sidebar to the output block. Must be a hexadecimal string with the format `#RRGGBB`. | `{% raw %}{{ header | color "#FF0000" }}{% endraw %}` |
+| `title`     | Adds a title to the output block. | `{% raw %}{{ header | title "Error?" }}{% endraw %}` |
 
 
 ### `{% raw %}{{text}}{% endraw %}` and `{% raw %}{{endtext}}{% endraw %}`
@@ -42,9 +42,9 @@ Example: `{% raw %}{{ text }}This is a plain text block.{{ endtext }}{% endraw %
 
 | Function    | Description | Example |
 | ----------- | ----------- | ------- |
-| `inline`    | Makes the text "inline" (in the Discord sense). If true, a `title` is also expected. | `{% raw %}{{ text \| inline true \| title "Favorite Food" }}Pizza{{ endtext }}{% endraw %}` |
-| `monospace` | All text in the block is monospaced. | `{% raw %}{{ text \| monospace true }}THIS IS CODE.{{ endtext }}{% endraw %}` |
-| `title`     | Adds a title to the text block.  | `{% raw %}{{ text \| title "Favorite Food" }}Pizza{{ endtext }}{% endraw %}` |
+| `inline`    | Makes the text "inline" (in the Discord sense). If true, a `title` is also expected. | `{% raw %}{{ text | inline true | title "Favorite Food" }}Pizza{{ endtext }}{% endraw %}` |
+| `monospace` | All text in the block is monospaced. | `{% raw %}{{ text | monospace true }}THIS IS CODE.{{ endtext }}{% endraw %}` |
+| `title`     | Adds a title to the text block.  | `{% raw %}{{ text | title "Favorite Food" }}Pizza{{ endtext }}{% endraw %}` |
 
 
 ### `{% raw %}{{section}}{% endraw %}` and `{% raw %}{{endsection}}{% endraw %}`
@@ -72,7 +72,7 @@ Example: `{% raw %}{{ image "https://example.com/img/image1.png" }}{% endraw %}`
 
 | Function    | Description | Example |
 | ----------- | ----------- | ------- |
-| `thumbnail` | Causes the image to be presented as a thumbnail (usually for a block or section). | `{% raw %}{{ image .Payload.Image \| thumbnail true }}{% endraw %}` |
+| `thumbnail` | Causes the image to be presented as a thumbnail (usually for a block or section). | `{% raw %}{{ image .Payload.Image | thumbnail true }}{% endraw %}` |
 
 ## Additional Functions
 
